@@ -1,4 +1,4 @@
 typedquery
 ==========
 
-Parser SQL augmented with types
+Parser for SQL augmented with types
