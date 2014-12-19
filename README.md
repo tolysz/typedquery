@@ -9,7 +9,11 @@ The basic idea is to start using SQL again, but use comemnts (`--`) to hide hask
 
 This started as `QuasiQuotes` excercise with the TH inpired `printf`.
 
-`genJsonQuery` produces `[Value]`
+ * `genJsonQuery` produces `[Value]`
+ * `genTypedQuery` produces `[(T1,...,Tn)]` tuples, `[T]` or `()` all depending on the `SQL` query
+
+If you do not provide value (or a mean to get on inside query you need to give it outside.
+
 
 They do the same: 
 
