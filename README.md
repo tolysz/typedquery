@@ -5,6 +5,10 @@ Parser for SQL augmented with types
 
 This package provides base parsing facilities for possibly all *-simple database packages converting them into *-simpel-typed
 
+ * https://github.com/tolysz/mysql-simple-typed
+ * https://github.com/tolysz/sqlite-simple-typed
+ * https://github.com/tolysz/postgresql-simple-typed
+
 The basic idea is to start using SQL again, but use comemnts (`--`) to hide haskell annotation.
 
 This started as `QuasiQuotes` excercise with the TH inpired `printf`.
