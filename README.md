@@ -13,6 +13,7 @@ This started as `QuasiQuotes` excercise with the TH inpired `printf`.
 
 They do the same: 
 
+    $(genJsonQuery "SET SESSION group_concat_max_len = ? ") conn (10000 :: Int)
     $(genJsonQuery "SET SESSION group_concat_max_len = ? -- Int ") conn 10000
     $(genJsonQuery "SET SESSION group_concat_max_len = ? -- Int  -- < 1000 ") conn
     $(genJsonQuery "SET SESSION group_concat_max_len = ? -- < (1000 :: Int) ") conn
