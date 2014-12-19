@@ -45,11 +45,11 @@ Adnotations start with `-- ` as otherwise `HeidiSQL` was complaining, then  `>` 
 
 Eg.
 
-    insert into some_table
+    $(genJsonQuery [qq| insert into some_table
       ( timeAsSQLfunction           -- ~ now ()
       , someInputfromAesonViaLens   -- Int  -- < v ^? (key "coolValue" . _Integral) ^. non 3 
       , someUserName                -- Text -- < someNameFromContext
-      )
+      ) |]) conn
 
 Translates to
 
