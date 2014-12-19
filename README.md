@@ -30,18 +30,17 @@ The parser is not complete, I will try to add as many issues there are and try t
 
 Adnotations start with `-- ` as otherwise `HeidiSQL` was complaining, then  `>` `<` `~`  or just text.
 
-------------------------- | ------------------------------
+    
 | syntax                  |     equivalent               |
 ------------------------- | ------------------------------
-|    bal -- Type          |  (\v -> v :: Bla)            |
-|    bla -- > f           |  (\v -> f bla )              |
-|    bla -- Type -- > f   |  (\v -> (f bla):: Type )     |
-------------------------- | ------------------------------
-|    ?   -- Type -- < var |  ??                          |
-|    ?   -- < var         |  ??                          |
-|    ?   -- < var         |  ??                          |
-|    ?   -- ~ verbatim    |  ??                          |
-------------------------- | ------------------------------
+|    `bal -- Type`          |  `(\v -> v :: Bla)`            |
+|    `bla -- > f`           |  `(\v -> f bla )`              |
+|    `bla -- Type -- > f`   |  `(\v -> (f bla):: Type )`     |
+|    `?   -- Type -- < var` |  `??`                          |
+|    `?   -- < var`         |  `??`                          |
+|    `?   -- < var`         |  `??`                          |
+|    `?   -- ~ verbatim`    |  `??`                          |
+ 
 
 
 Eg.
