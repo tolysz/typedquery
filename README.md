@@ -9,6 +9,8 @@ This package provides base parsing facilities for possibly all *-simple database
  * https://github.com/tolysz/sqlite-simple-typed
  * https://github.com/tolysz/postgresql-simple-typed
 
+example: https://github.com/tolysz/sqlite-simple-typed/blob/master/example/src/Main.hs
+
 The basic idea is to start using SQL again, but use comemnts (`--`) to hide haskell annotation.
 
 This started as `QuasiQuotes` excercise with the TH inpired `printf`.
