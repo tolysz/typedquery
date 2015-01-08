@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                typedquery
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            Parser for SQL augmented with types
 description:         Base package for parsing queries
 homepage:            https://github.com/tolysz/typedquery
@@ -16,12 +16,20 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
+Flag debug-typed-queries
+  Description: Enable debug support
+  Default:     False
+
 library
   exposed-modules:     Database.TypedQuery.SQL
                        Database.TypedQuery.SQLParser
                        Database.TypedQuery.Types
   -- other-modules:       
   -- other-extensions:    
+  if flag(debug-typed-queries)
+    ghc-options: -DDEVELOPMENT
+    build-depends: rawstring-qm
+                 , haskell-src-exts
   build-depends:       base >=4.7 && <4.8
                ,       template-haskell
                ,       haskell-src-meta

@@ -3,6 +3,9 @@ typedquery
 
 Parser for SQL augmented with types
 
+Till it finalised I would recomend installing it: with `cabal -f debug-typed-queries` just to see what is gonig on. 
+ As the SQL parser is not complete, and will need a major lift to make it readable and sane... however it works fine for all queries I need.
+
 This package provides base parsing facilities for possibly all *-simple database packages converting them into *-simpel-typed
 
  * https://github.com/tolysz/mysql-simple-typed
