@@ -27,7 +27,7 @@ library
   -- other-modules:       
   -- other-extensions:    
   if flag(debug-typed-queries)
-    ghc-options: -DDEVELOPMENT
+    cpp-options: -DDEVELOPMENT
     build-depends: rawstring-qm
                  , haskell-src-exts
   build-depends:       base >=4.7 && <4.8
