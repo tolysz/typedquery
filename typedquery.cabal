@@ -10,7 +10,7 @@ license:             BSD3
 license-file:        LICENSE
 author:              Marcin Tolysz
 maintainer:          tolysz@gmail.com
--- copyright:           
+copyright:           ©2014-2015 Marcin Tolysz
 category:            Database
 build-type:          Simple
 extra-source-files:  README.md
@@ -30,7 +30,7 @@ library
     cpp-options: -DDEVELOPMENT
     build-depends: rawstring-qm
                  , haskell-src-exts
-  build-depends:       base >=4.7 && <4.8
+  build-depends:       base >=4.5 && < 5
                ,       template-haskell
                ,       haskell-src-meta
                ,       parsec
