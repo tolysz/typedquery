@@ -1,3 +1,8 @@
+[![Coverage Status](https://img.shields.io/coveralls/tolysz/typedquery.svg)](https://coveralls.io/r/tolysz/typedquery)
+[![Build Status](https://travis-ci.org/tolysz/typedquery.svg?branch=master)](https://travis-ci.org/tolysz/typedquery)
+[![Latest Version](https://img.shields.io/hackage/v/typedquery.svg)](https://hackage.haskell.org/package/typedquery)
+
+
 typedquery
 ==========
 
