@@ -8,6 +8,23 @@ import Prelude
 
 sql :: TokenParser st
 sql = makeTokenParser sqlDef
+--     { stringLiteral = stringLiteral
+--     }
+--   where
+--        stringChar      =   do{ c <- stringLetter; return (Just c) }
+--                       <|> stringEscape
+--                       <?> "string character"
+--
+--        stringLiteral   = lexeme (
+--                           do{ str <- between (char '\'')
+--                                              (char '\'' <?> "end of string")
+--                                              (many stringChar)
+--                             ; return (foldr (maybe id (:)) "" str)
+--                             }
+--                           <?> "literal string")
+--        stringLetter    = satisfy (/= '\'')
+--        stringEscape    = char '\\' >> char '\'' >> return (Just '\'')
+
 
 sqlExpr :: TokenParser st
 sqlExpr = makeTokenParser sqlDefExpr
@@ -24,7 +41,7 @@ sqlStyle = emptyDef
                 , identStart     = letter
                 , identLetter    = alphaNum <|> oneOf "_.[]"
                 , opStart        = opLetter sqlStyle
-                , opLetter       = oneOf "$%&*+./<=>?@\\^|-~()"
+                , opLetter       = oneOf "$%&*+./<=>?@\\^|#-~():!"
                 , reservedOpNames= []
                 , reservedNames  = []
                 , caseSensitive  = False
@@ -53,10 +70,10 @@ sqlDefExpr2 = sqlStyleCS
 
 sqlDef :: LanguageDef st
 sqlDef = sqlStyle
-                { reservedOpNames= ["=","\\","|","<",">","+","-","*","@",">=","<="]
+                { reservedOpNames= ["=", "\\", "||", "|", "<", ">", "+", "--", "->>", "#>>", "->", "#>", "-", "*", "@", ">=", "<=", "::"]
                 , reservedNames  = ["AS", "LEFT", "FROM", "SELECT", "INSERT", "DISTINCT", "UNIQUE"
                                    , "CONCAT", "CONCAT_WS", "NOW", "COUNT", "CASE", "WHEN", "THEN", "IF", "ELSE", "NULL"
                                    , "CONVERT_TZ","GROUP_CONCAT", "SUM", "JOIN", "END", "DATE", "TIME_TO_SEC", "TIMEDIFF"
                                    , "AVG", "MIN", "MAX", "GROUP", "BY", "LIMIT", "ORDER"
-                                   , "IFNULL", "IN"]
-                }
+                                   , "IFNULL", "IN"] -- , "JSON_EXTRACT_PATH"
+                 }

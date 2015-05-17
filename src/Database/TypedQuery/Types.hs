@@ -194,7 +194,7 @@ genUncurry q 1 = do
      f <- TH.newName "f"
      x <- TH.newName "x"
      return $
-       TH.LamE [TH.VarP f, (rdonly q) `TH.ConP` [TH.VarP x]] $ TH.VarE f `TH.AppE` TH.VarE x
+       TH.LamE [TH.VarP f, rdonly q `TH.ConP` [TH.VarP x]] $ TH.VarE f `TH.AppE` TH.VarE x
 genUncurry _ n
     | n < 0     = fail "There are no negative count tuples"
     | otherwise = do
