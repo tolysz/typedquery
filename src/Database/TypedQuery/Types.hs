@@ -2,6 +2,7 @@
   , RankNTypes
   , CPP
   , TemplateHaskell
+  , LambdaCase
   #-}
 {-# OPTIONS_GHC -fno-warn-orphans  #-}
 
@@ -44,17 +45,26 @@ import Language.Haskell.Meta.Parse (parseType, parseExp)
 
 #if DEVELOPMENT
 import Language.Haskell.Exts (parseStmtWithMode, prettyPrint, ParseResult(..), defaultParseMode, Extension(..),KnownExtension(..), ParseMode(..))
+-- import Language.Haskell.Exts (parseStmt, prettyPrint, ParseResult(..), defaultParseMode, Extension(..),KnownExtension(..), ParseMode(..))
 import Control.Monad.IO.Class (liftIO)
 import System.IO.Unsafe (unsafePerformIO)
 
 import Data.String.QM
 
-codeFormat =  check . fmap reformat . parseStmtWithMode defaultParseMode {extensions=[EnableExtension BangPatterns, EnableExtension HereDocuments,EnableExtension OverloadedStrings]}
+codeFormat = id
+codeFormat' =  check . fmap reformat . parseStmtWithMode defaultParseMode {
+  extensions
+    = [ EnableExtension BangPatterns
+      , EnableExtension HereDocuments
+      , EnableExtension OverloadedStrings
+      , EnableExtension NewQualifiedOperators
+      , EnableExtension TypeOperators
+      ]}
  where
   reformat = prettyPrint
-  check r = case r of
-              ParseOk a ->  a
-              ParseFailed loc err -> error $ show (loc,err)
+  check = \case
+      ParseOk a ->  a
+      ParseFailed loc err -> error $ show (loc,err)
 
 #endif
 

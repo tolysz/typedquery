@@ -162,12 +162,12 @@ typedSQLtoSQL a =
                              rr = fromSQLWriter r
                          in
 #if DEVELOPMENT
-                          unsafePerformIO $ do
+                         unsafePerformIO $ do
                               putStrLn $ (\(a1,_,_,_,_) -> '\n':a1) rr
-                              pprint $  r
+                              pprint r
                               liftIO $ return $ Just rr
 #else
-                          Just rr
+                         Just rr
 #endif
               Left l -> error $ show l
 -- *
@@ -419,7 +419,7 @@ valueExpression :: WParser ()
 valueExpression = do
    qve <- commonValueExpression
 --    whiteSpace sql
-   addQ "\n--VE\n"
+--    addQ "\n--VE\n"
    addQ qve
    addN $ show qve
 
