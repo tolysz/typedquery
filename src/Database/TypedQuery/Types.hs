@@ -7,18 +7,18 @@
 {-# OPTIONS_GHC -fno-warn-orphans  #-}
 
 module Database.TypedQuery.Types
-( TypedQuery (..)
-, TypeAction (..)
-, RunDB (..)
-, jsonPair
-, convAction
-, typeTuple
-, typeTupleIn
-, vanilaQuery
-, genUncurry
-, genJsonQuery
-, genTypedQuery
-)
+  ( TypedQuery (..)
+  , TypeAction (..)
+  , RunDB (..)
+  , jsonPair
+  , convAction
+  , typeTuple
+  , typeTupleIn
+  , vanilaQuery
+  , genUncurry
+  , genJsonQuery
+  , genTypedQuery
+  )
 where
 
 import Control.Arrow (first)
@@ -52,6 +52,7 @@ import System.IO.Unsafe (unsafePerformIO)
 import Data.String.QM
 
 codeFormat = id
+-- currently there is some parese error in the following section
 codeFormat' =  check . fmap reformat . parseStmtWithMode defaultParseMode {
   extensions
     = [ EnableExtension BangPatterns

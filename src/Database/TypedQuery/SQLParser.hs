@@ -578,6 +578,9 @@ parseInsert :: WParser ()
 parseInsert = do
              whiteSpace sql
              greserved "INSERT"
+             optional $ do
+               greserved "OR"
+               greserved "IGNORE"
              greserved "INTO"
              addQ =<< identifier3
              addQ =<< braketS <$> fields
