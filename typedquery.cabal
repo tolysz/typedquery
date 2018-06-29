@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                typedquery
-version:             0.1.0.3
+version:             0.1.1
 synopsis:            Parser for SQL augmented with types
 description:         Base package for parsing queries
 homepage:            https://github.com/tolysz/typedquery

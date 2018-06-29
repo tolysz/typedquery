@@ -22,7 +22,14 @@ module Database.TypedQuery.Types
 where
 
 import Control.Arrow (first)
+
+#if !(MIN_VERSION_base(4,8,0))
 import Data.Monoid (Monoid(..))
+#endif
+#if !(MIN_VERSION_base(4,11,0))
+import Data.Semigroup (Semigroup(..))
+#endif
+
 import Data.String (IsString(..))
 import Data.Typeable (Typeable)
 
@@ -115,16 +122,18 @@ instance (RunDB q, IsString q, Monoid q) => IsString (TypedQuery q) where
        Nothing -> mempty
        Just (a, b, c, d, e)    -> TypedQuery (fromString a) b c d e
 
-instance (RunDB q, Monoid q) => Monoid (TypedQuery q) where
-    mempty = TypedQuery mempty mempty mempty mempty mempty
-    TypedQuery a1 a2 a3 a4 a5 `mappend` TypedQuery b1 b2 b3 b4 b5 
+
+instance (RunDB q, Monoid q) => Semigroup (TypedQuery q) where
+    TypedQuery a1 a2 a3 a4 a5 <> TypedQuery b1 b2 b3 b4 b5 
         = TypedQuery
             (mappend a1 b1)
             (mappend a2 b2)
             (mappend a3 b3)
             (mappend a4 b4)
             (mappend a5 b5)
-    {-# INLINE mappend #-}
+
+instance (RunDB q, Monoid q) => Monoid (TypedQuery q) where
+    mempty = TypedQuery mempty mempty mempty mempty mempty
 
 convAction :: RunDB q => q -> TypeAction -> TH.Exp -> TH.Exp
 convAction _ (TAUnknown) = id

@@ -22,7 +22,14 @@ import Control.Applicative hiding (many, optional)
 --import Control.Arrow (first)
 
 import Control.Monad -- (void, foldM_)
-import Data.Monoid (Monoid (..))
+
+#if !(MIN_VERSION_base(4,8,0))
+import Data.Monoid (Monoid(..))
+#endif
+#if !(MIN_VERSION_base(4,11,0))
+import Data.Semigroup (Semigroup(..))
+#endif
+
 import qualified Language.Haskell.TH.Syntax as TH
 
 import Data.Maybe
@@ -149,10 +156,12 @@ addJC s = addW $ mempty { inTypeW = [TAInConv  s] }
 addJISU :: String -> WParser ()
 addJISU s  = addW $ mempty   { inTypeV = [TAInSupply s]}
 
+instance Semigroup SQLWriter where
+  SQLWriter a1 a2 a3 a4 a5 <> SQLWriter b1 b2 b3 b4 b5
+        = SQLWriter (mappend a1 b1) (mappend a2 b2) (mappend a3 b3) (mappend a4 b4) (mappend a5 b5)
+
 instance Monoid SQLWriter where
   mempty = SQLWriter mempty mempty mempty mempty mempty
-  SQLWriter a1 a2 a3 a4 a5 `mappend` SQLWriter b1 b2 b3 b4 b5
-        = SQLWriter (mappend a1 b1) (mappend a2 b2) (mappend a3 b3) (mappend a4 b4) (mappend a5 b5)
 
 typedSQLtoSQL :: String -> Maybe (String, [Text], [TypeAction], [TypeAction], [TypeAction])
 -- ^ takes some annotates string and gives its parsed representation
