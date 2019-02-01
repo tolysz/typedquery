@@ -10,7 +10,7 @@ license:             BSD3
 license-file:        LICENSE
 author:              Marcin Tolysz
 maintainer:          tolysz@gmail.com
-copyright:           ©2014-2018 Marcin Tolysz
+copyright:           ©2014-2019 Marcin Tolysz
 category:            Database
 build-type:          Simple
 extra-source-files:  README.md
