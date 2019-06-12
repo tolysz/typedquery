@@ -181,9 +181,9 @@ typeTuple (TypedQuery q _ lq _ _) = do
         _ -> return $ TH.LamE [TH.TupP  $ map (TH.BangP . TH.VarP) nsa         ] (TH.TupE typ)
 
 genVal :: RunDB q => q ->  TypeAction -> Either a (Maybe TH.Exp)
-genVal _ (TAInsIS a)    = Right $ either (error "parse failed") Just (parseExp a)
-genVal _ (TAInsISU a)   = Right $ either (error "parse failed") Just (parseExp a)
-genVal q (TAInSupply a) = Right $ either (error "parse failed") (Just . TH.AppE (TH.ConE (rdin q)) ) (parseExp a)
+genVal _ (TAInsIS a)    = Right $ either (error "parse failed TAInsIS") Just (parseExp a)
+genVal _ (TAInsISU a)   = Right $ either (error "parse failed TAInsISU") Just (parseExp a)
+genVal q (TAInSupply a) = Right $ either (error "parse failed TAInSupply") (Just . TH.AppE (TH.ConE (rdin q)) ) (parseExp a)
 genVal _ _ = Right Nothing
 
 
